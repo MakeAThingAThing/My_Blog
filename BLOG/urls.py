@@ -20,5 +20,8 @@ from homepages import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.homepage),
+    url(r'^homepages/',include('homepages.urls',
+                        namespace='homepages',
+                        app_name='homepages')),
+
 ]

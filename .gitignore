@@ -1,0 +1,5 @@
+#pychram project
+.idea/
+
+#if I want to ignore itself
+#.gitignore

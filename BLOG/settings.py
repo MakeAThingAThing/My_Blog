@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -119,3 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_HOST_USER = '506703478@qq.com'
+EMAIL_HOST_PASSWORD = 'Czy192.168.1.100'
+EMAIL_PORT = 25
+EMAIL_USE_TLS =True

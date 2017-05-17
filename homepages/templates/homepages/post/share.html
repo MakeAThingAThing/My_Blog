@@ -1,0 +1,25 @@
+{% extends "homepages/base.html" %}
+
+{% block title %}Share a post{% endblock %}
+
+{% block content %}
+    {% if sent %}
+        <h3>E-mail successfully sent</h3>
+        <p>
+            "{{ post.title }}" was successfully sent to {{ cd.to }}.
+        </p>
+    {% else %}
+        <h3>Share "{{ post.title }}" by e-mail</h3>
+        <form id="email_form" action="." method="post">
+            {% for field in form %}
+                <div>
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            <!--模板标签csrf_token使用自动升生成的令牌引入一个隐藏字段，以避免跨站点请求伪造（CSRF）攻击，在所有通过post提交的表单中包括此标签-->
+            <input id="submit" type="submit" value="Send e-mail" />
+        </form>
+    {% endif %}
+{% endblock %}

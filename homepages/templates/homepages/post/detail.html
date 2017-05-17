@@ -1,11 +1,54 @@
 {% extends "homepages/base.html" %}
-
+{% load blog_tags %}
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    <p class="date">
-        published {{ post.publish }} by {{ post.author }}
+    <h1 class="post_title">{{ post.title }}</h1>
+    <p class="date_B">
+        published {{ post.publish }} by <span class="author">{{ post.author }}</span>
     </p>
-    {{ post.body|linebreaks }}
+    {{ post.body|markdown }}
+    <p id="send_email_link">
+        Check
+        <a  href="{% url "homepages:post_share" post.id %}">
+            Here
+        </a>
+        to Share!
+    </p>
+    <hr />
+    <div id="similar_post">
+    <h3>Similar posts</h3>
+    {% for post in similar_posts %}
+        <p>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }} >></a>
+        </p>
+        {% empty %}
+        There are no similar post yet.
+    {% endfor %}
+    </div>
+    {% with comments.count as total_comments %}
+        <h3>
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h3>
+    {% endwith %}
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                Comment {{ forloop.counter }} by <span class="author">{{ comment.name }}</span> on {{ comment.created }}:
+            </p>
+        {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+        <p>There are no comments yet.</p>
+    {% endfor %}
+    {% if new_comment %}
+        <h4>Your comment has been added!</h4>
+    {% else %}
+        <h4>Add a new comment:</h4>
+        <form id="comment_form" action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input id="submit" type="submit" value="Add comment" /></p>
+        </form>
+    {% endif %}
 {% endblock %}

@@ -125,8 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-EMAIL_HOST = 'smtp.qq.com'
-EMAIL_HOST_USER = '506703478@qq.com'
-EMAIL_HOST_PASSWORD = 'oirrlmiifdarcaab'
-EMAIL_PORT = 25
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 
 EMAIL_USE_TLS =True
